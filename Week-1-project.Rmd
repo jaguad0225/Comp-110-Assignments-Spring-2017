@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Jhader Aguad
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,11 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+The French Revolution was a revolution in France. 
+
+* It happened in 1789
+[1789](https://en.wikipedia.org/wiki/Liberty_Leading_the_People)
+
+![great picture](https://williamblakeandenlightenmentmedia.files.wordpress.com/2012/02/tumblr_l02va7vytt1qbq876o1_500.jpg)
+
+
