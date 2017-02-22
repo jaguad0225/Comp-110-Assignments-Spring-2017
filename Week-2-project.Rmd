@@ -10,13 +10,15 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 
-Some narrative to describe the problem. doei.
 
 ```{r}
 
-load("Library-small.rda")
-
 #I downloaded the data from Prof. Kaplan webpage.
+download.file("http://tiny.cc/dcf/Library-small.rda", dest="Library-small.rda")
+
+#The full collection of books is too large to download in a short time, so I will use a small sample of books. I downloeaded the data from http://tiny.cc/dcf/Library-small.rda
+
+load("Library-small.rda")
 
 ## Basics
 
@@ -31,3 +33,8 @@ Inv %>% group_by(Current.Status) %>% tally()
 Inv %>% group_by(Issued.Count) %>% tally()
 ```
 
+The story is that "Inv" or the library's collection is smaller than the amount of individual books that might be inside or outside the collection. 
+
+In the library's collection there is one book missing, and only 18 books that have been given as loans. 
+
+There are 996 books that have never been checked out. There are 337 books that have been checked out only one time, and 203 books that have been checked out three times. I can see that 20 books are very popular and have been checked out 9 times. The most popular books have been checked out approximately 45 times.
