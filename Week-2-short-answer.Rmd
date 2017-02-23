@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Jhader Aguad
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,28 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#1.1 
+a) Taffy: value of a variable for a particular case
+b) year: quantitative variable
+c) sex: categorical variable
+d) name: quantitative variable
+e) count: quantitative variable
+
+#1.2
+1) president's values are not consistent in format (Last Name, Firts Name) and (First Name Last Name) and there are ilegal punctutations (,).
+2) in office values are also inconsistent (sometimes uses "-" and "to")
+3) it depends is not a numerical value
+
+1.4
+1. Table A: "Year," "Algeria," "Brazil," "Columbia"
+   Table B: "Country," "Y2000," "Y2001"
+   Table C: "Country," "Year," "Value"
+   
+2. Table A: a year
+   Table B: a country
+   Table C: a country in a year
+   
+1.5 
+1. 5 variables
+
+
