@@ -28,7 +28,35 @@ ggplot(dailyBirths,aes(x=date, y=totalBirths))+geom_point()
 
 ```{r}
 weeklyBirthdays <- Birthdays %>% 
-  mutate(week(date)) %>%
+  mutate(WeekDate = week(date)) %>%
+  group_by(WeekDate) %>%
   summarise(totalWeekly = sum(births))
+ggplot(weeklyBirthdays,aes(x=WeekDate,y=totalWeekly))+geom_point()
 ```
+```{r}
+monthlyBirthdays <- Birthdays %>% 
+  mutate(MonthDate = month(date,label=TRUE)) %>%
+  group_by(MonthDate) %>%
+  summarise(totalMonthly = sum(births))
+ggplot(monthlyBirthdays,aes(x=MonthDate, y=totalMonthly))+geom_point()
+```
+In Februare, there are fewer births because it has fewer days than other months. 
+```{r}
+JulianDayBirthdays <- Birthdays %>% 
+  mutate(JulianDayDate = yday(date)) %>%
+  group_by(JulianDayDate) %>%
+  summarise(totalJulian = sum(births))
+ggplot(JulianDayBirthdays,aes(x=JulianDayDate, y=totalJulian))+geom_point()
+```
+
+```{r}
+dayoftheweek <- Birthdays %>% 
+  mutate(ByWeekDay = wday(date,label=TRUE)) %>%
+  group_by(ByWeekDay) %>%
+  summarise(dayoftheweek = sum(births))
+ggplot(dayoftheweek,aes(x=ByWeekDay, y=dayoftheweek))+geom_point()
+```
+In American culture, it is usual for people to schedule a cesarea, and they tend to do it over weekdays. Therefore, fewer babies will be born on the weekends. 
+
+
 
