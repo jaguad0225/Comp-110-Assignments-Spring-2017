@@ -1,6 +1,6 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Jhader Aguad
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,37 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+First, I download the dataset.
+```{r cache=TRUE}
+data_site <-"http://tiny.cc/dcf/2014-Q4-Trips-History-Data-Small.rds" 
+Trips <- readRDS(gzcon(url(data_site)))
+nrow(Trips)
+names(Trips)
+```
+Second, I start with the anaylisis. 
+##1
+```{r}
+Trips %>% ggplot(aes(x=sdate)) + geom_density()
+```
+More bikes are being rented in October and November than they are in January, because of Winter. 
+
+##2
+```{r}
+Trips %>% 
+  mutate(time_of_day = lubridate::hour(sdate) 
+         +lubridate::minute(sdate)/60) %>% 
+  group_by(time_of_day) %>% 
+  ggplot(aes(x=time_of_day)) + geom_density() 
+```
+Bikes start being rented in the morning and reach their peak at 8am (when people start going to work). There's a small break between 11am and 3pm, but then demand grows again at 4pm-5pm where people return from work. 
+
+##3 & 4
+```{r}
+Trips %>% 
+  mutate(day_of_week = lubridate::wday(sdate)) %>%
+  mutate(time_of_day = lubridate::hour(sdate) 
+         +lubridate::minute(sdate)/60) %>%
+  group_by(time_of_day) %>% 
+  ggplot(aes(x=time_of_day)) + geom_density(aes(fill=client),alpha=0.3) + facet_wrap( ~ day_of_week)
+```
+On Sunday (day=1), casual people tend to use the bicycles more than registered clients in the morning and afterrnon. More registered clients use the bicycles during nightime. During weekdays (day=2,3,4,5,6) we can see a pattern that people that go to work (enter at 8am and leave by 4pm) are more likely to be registered. 
