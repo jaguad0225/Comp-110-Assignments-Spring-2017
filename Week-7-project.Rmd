@@ -1,6 +1,6 @@
 # Week 7 Project
 
-## Your name should appear here!
+## Jhader Aguad
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,40 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+```{r}
+library(rvest)
+library(lubridate)
+page <- "http://en.wikipedia.org/wiki/List_of_nuclear_reactors"
+table_nodes <- page %>%
+  read_html() %>%
+  html_nodes("table")
+table_list <-
+  html_table(table_nodes[1:30], fill = TRUE)
+```
+##Create Japan Table
+```{r}
+japan_table <- table_list[[24]] 
+View(japan_table)
+```
+##Remove first Row
+```{r}
+ncol(japan_table)
+nrow(japan_table)
+new_names <- c("Name", "Reactor", "Type", "Model", "Status", "CapacityNet", "CapacityGross", "ConstructionDate", "CommercialDate", "Closure")
+names(japan_table) <- new_names
+japan_table1 <- japan_table[-1, ]
+nrow(japan_table1)
+View(japan_table1)
+lubridate::
+```
+##Lubridate
+```{r}
+
+```
+
+4. A quick visualization
+```{r}
+ggplot(japan_table1,aes(x=ConstructionDate, y=CapacityNet)) + geom_point()
+```
+
