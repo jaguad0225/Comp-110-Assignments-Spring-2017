@@ -1,13 +1,89 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## Jhader Aguad
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaic)
+data("CPS85", package = "mosaicData")
 ```
 <!-- put your content after this line -->
 
 Here is my content!
+I replicate the first graph
+```{r}
+ggplot(data= CPS85, aes(x = exper, y=wage, color=married) ) + geom_point() + facet_wrap(~ sector)
+```
+
+I replicate the second graph
+```{r}
+library(DataComputing)
+data(NCHS, package = "DataComputing")
+ggplot(data=NCHS, aes(x=bmi)) + geom_density(aes(col=sex)) + facet_wrap(~smoker)
+```
+
+Diamonds: color diamonds to be largest on average
+```{r}
+names(diamonds)
+diamonds %>%
+  group_by(color) %>%
+  summarise(MeanCarat= mean(carat)) %>%
+  arrange(desc(MeanCarat)) %>%
+  head(1)
+```
+
+Diamonds: clarity of diamonds with largest average "table" per carat
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(MeanTable= mean(table)) %>%
+  arrange(desc(MeanTable)) %>%
+  head(1)
+```
+
+Minneapolis voting: number of cases
+```{r}
+library(DataComputing)
+Minneapolis2013 %>% tally()
+```
+
+Minneapolis voting: top 5 candidates
+```{r}
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  tally() %>%
+  arrange(desc(n)) %>%
+  filter(Second != "undervote") %>%
+  head(5)
+```
+
+How many undervotes in First choice?
+```{r}
+library(DataComputing)
+Minneapolis2013 %>%
+  filter(First == "undervote") %>%
+  group_by(First) %>%
+  tally()
+```
+
+How many undervotes in Second choice?
+```{r}
+library(DataComputing)
+Minneapolis2013 %>%
+  filter(Second == "undervote") %>%
+  group_by(Second) %>%
+  tally()
+```
+
+How many undervotes in Third choice?
+```{r}
+library(DataComputing)
+Minneapolis2013 %>%
+  filter(Third == "undervote") %>%
+  group_by(Third) %>%
+  tally()
+```
+
