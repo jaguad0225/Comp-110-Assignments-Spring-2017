@@ -13,7 +13,7 @@ Compiled on `r date()`.
 a) Taffy: value of a variable for a particular case
 b) year: quantitative variable
 c) sex: categorical variable
-d) name: quantitative variable
+d) name: categorical variable
 e) count: quantitative variable
 
 #1.2
@@ -31,14 +31,66 @@ e) count: quantitative variable
    Table C: a country in a year
  
 #2.2
-File name
+"File name"
 
 #2.3
-library("DataComputing")
+```{r}
 library("mosaicData")
-data(package="DataComputing")
-data(package="mosaicData")
+data(CPS85, package="mosaicData")
+```
 
+
+#2.4
+Wrong because it is naming an object with the command <- as opposed to ask for NHANES
+
+#2.6
+first-essay has problem with illegal punctuation
+"MyData" has illegal punctuation
+small sample has a space 
+sqrt() stands for square root and it's already a function
+
+#2.7
+data(flights, package = "nycflights13")
+help(flights)
+View(flights)
+ncol(flights)
+nrow(flights)
+
+1. 19 variables
+2. 336776
+3. flight number
+5. air_time = minutes
+   distance = miles
+   
+#2.8
+a. improper syntax for function argument
+b. No mistake
+c. invalid objext name
+d. Unmatched quotes
+e. no assigmnent operator
+
+#2.9
+. and _ can be used
+all of them
+
+#3.1
+fireplace %>%
+fireplace()
+Hello(fireplace)
+Hola$fireplace
+
+#3.2
+Either you assing or chain:
+It will work if Results is a Data_Table
+Result %>% filter(BabyNames, name=="Prince")
+
+#3.3
+<- is the assignment operator
+
+#4.2
+```{r}
+9+7
+```
 
 
 
