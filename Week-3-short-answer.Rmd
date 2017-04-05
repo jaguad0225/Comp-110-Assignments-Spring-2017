@@ -1,13 +1,28 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Jhader Aguad
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaicData)
+barGraphHelper(CPS85)
 ```
 <!-- put your content after this line -->
 
 Here is my content!
+
+#5.1
+```{r}
+ggplot(data=CPS85, aes(x=sex, y=wage, fill=married)) + geom_bar(stat='identity', position='dodge', width=.9) + facet_wrap(~race,ncol=3)
+```
+
+
+#5.2
+```{r}
+HappinessIndex %>%
+  WorldMap(key = "country", fill="corruption")
+```
+
