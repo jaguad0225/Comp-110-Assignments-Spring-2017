@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Jhader Aguad
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,66 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##12.1
+```{r}
+TopFiveNames <- BabyNames %>%
+  group_by(sex,name) %>%
+  summarise(total=sum(count)) %>%
+  filter(rank(desc(total)) <= 5)
+TopFiveNames
+```
+
+##12.2
+```{r}
+Fraction <- BabyNames %>%
+  group_by(year,name) %>%
+  summarise(total=sum(count)) %>%
+  mutate(Frac_10 = ifelse(rank(desc(total)) <= 100, "True", "False")) %>%
+  group_by(year,Frac_10) %>%
+  summarise(total=sum(total))
+Fraction
+```
+
+```{r}
+GlyphReady <-
+  Fraction %>%
+  spread(Frac_10,total) %>%
+  mutate(Frac_10 = True/(True + False))
+ggplot(GlyphReady, aes(x=year, y=Frac_10)) + geom_point()
+```
+
+##12.3
+a. summary
+b. summary
+c. summary
+d. transofrmation
+e. transofrmation
+f. summary
+g. transformation
+h. summary
+
+##13.1
+8 vertices
+9 edges
+
+##13.2
+1. ABCD
+2. Table 2
+3. Table 1: BC not connected
+
+##13.3
+Table 2
+
+##13.4
+exports
+population
+
+##14.1
+```{r}
+library(mosaicData)
+ggplot(CPS85, aes(x=sex,y=wage)) + geom_boxplot(aes(fill=sex))
+```
+##14.3
+1.61 women
+1.76 men
+
