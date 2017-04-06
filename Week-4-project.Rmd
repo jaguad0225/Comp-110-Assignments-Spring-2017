@@ -10,10 +10,7 @@ library(DataComputing)
 ```
 
 ```{r}
-data("Birthdays")
-```
-
-```{r}
+data(Birthdays, package = "mosaicData")
 names(Birthdays)  
 ```
 
@@ -21,11 +18,10 @@ names(Birthdays)
 dailyBirths <- Birthdays %>% 
   group_by(date) %>%
   summarise(totalBirths = sum(births))
-```
-```{r}
-ggplot(dailyBirths,aes(x=date, y=totalBirths))+geom_point()
+ggplot(dailyBirths,aes(x=date, y=totalBirths)) + geom_point()
 ```
 
+#2.a Number if births aggregated over all the years by each week
 ```{r}
 weeklyBirthdays <- Birthdays %>% 
   mutate(WeekDate = week(date)) %>%
@@ -33,6 +29,9 @@ weeklyBirthdays <- Birthdays %>%
   summarise(totalWeekly = sum(births))
 ggplot(weeklyBirthdays,aes(x=WeekDate,y=totalWeekly))+geom_point()
 ```
+There are only 52 weeks in a year.
+
+#2.b Number if births aggregated over all the years by each month
 ```{r}
 monthlyBirthdays <- Birthdays %>% 
   mutate(MonthDate = month(date,label=TRUE)) %>%
@@ -40,7 +39,10 @@ monthlyBirthdays <- Birthdays %>%
   summarise(totalMonthly = sum(births))
 ggplot(monthlyBirthdays,aes(x=MonthDate, y=totalMonthly))+geom_point()
 ```
-In Februare, there are fewer births because it has fewer days than other months. 
+In February there are fewer births because it has fewer days than other months. 
+
+
+#2.c Number if births aggregated over all the years by each Julian day
 ```{r}
 JulianDayBirthdays <- Birthdays %>% 
   mutate(JulianDayDate = yday(date)) %>%
@@ -48,7 +50,9 @@ JulianDayBirthdays <- Birthdays %>%
   summarise(totalJulian = sum(births))
 ggplot(JulianDayBirthdays,aes(x=JulianDayDate, y=totalJulian))+geom_point()
 ```
+There are only 366 days per year.
 
+#3 Number of birthds by day of the week
 ```{r}
 dayoftheweek <- Birthdays %>% 
   mutate(ByWeekDay = wday(date,label=TRUE)) %>%
@@ -58,5 +62,12 @@ ggplot(dayoftheweek,aes(x=ByWeekDay, y=dayoftheweek))+geom_point()
 ```
 In American culture, it is usual for people to schedule a cesarea, and they tend to do it over weekdays. Therefore, fewer babies will be born on the weekends. 
 
-
-
+#4 Two-year span
+```{r}
+MyTwoYears <- Birthdays %>% 
+  filter(year(date)%in% 1978:1979) %>%
+  group_by(date) %>%
+  summarise(births=sum(births))
+ggplot(MyTwoYears, aes(x=date, y=births))+geom_point()
+```
+Cases of birthdays follow the same pattern in two different trends. The upper trend is more dense than the lower trend.
