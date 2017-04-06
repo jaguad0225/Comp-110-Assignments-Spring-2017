@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Jhader Aguad 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,36 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##10.1
+The data verbs have inputs that are data tables, including variables, which they need to match across tables.
+
+##10.2
+Because the two data tables have a different number of cases (246 vs. 261), which are in different order. the second case in the first table is Akrotiri and in the second table is Aland. 
+
+##10.3
+1. Data table B and I'd mutate the columns for Y2000 and Y2001
+2. Data table C
+
+NewTable %>%  
+left_join(ContinentData) %>% group_by(Yer, Continent) and then summarize
+
+##11.1
+a: 
+One - number of babies by name, sex, and year
+Two - number of female and male babies with that name
+Three - number of names by sex in 1912 and 2012
+
+b. ONE - narrow
+TWO - wide
+
+c. sex
+
+d. they are counting by categories
+
+##11.3
+a. A wide
+b. B wide
+c. A wide
+
+
+
