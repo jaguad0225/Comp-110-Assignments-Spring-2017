@@ -1,6 +1,6 @@
 # Week 5 Project
 
-## Your name should appear here!
+## Jhader Aguad
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,23 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+```{r}
+companies <- c("GE", "MMM", "V")
+Prices <- 
+  read_stock_prices(companies, what="daily",
+                    start_year = 2000, end_year = 2015)
+ggplot(Prices, aes(x=date,y=close)) + geom_line(aes(colour=company))
+```
+
+```{r}
+ref_date <- ymd("2005-01-03")
+Reference <- 
+  Prices %>%
+  filter(date==ref_date) %>%
+  select(company,standard=close)
+reference_1 <- 
+  Prices %>%
+  left_join(Reference) %>%
+  mutate(index=close/standard)
+```
+
