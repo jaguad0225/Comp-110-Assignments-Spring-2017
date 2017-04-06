@@ -7,8 +7,6 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
-library(mosaicData)
-barGraphHelper(CPS85)
 ```
 <!-- put your content after this line -->
 
@@ -16,6 +14,8 @@ Here is my content!
 
 #5.1
 ```{r}
+library(mosaicData)
+library(DataComputing)
 ggplot(data=CPS85, aes(x=sex, y=wage, fill=married)) + geom_bar(stat='identity', position='dodge', width=.9) + facet_wrap(~race,ncol=3)
 ```
 
