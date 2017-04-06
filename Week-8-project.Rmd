@@ -1,6 +1,6 @@
 # Week 8 Project
 
-## Your name should appear here!
+## Jhader Aguad
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,64 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#Find distance
+```{r}
+Dists <- dist(mtcars)
+```
+
+#Clustering
+```{r}
+Dendrogram <- hclust(Dists)
+```
+
+```{r}
+library(ggdendro)
+ddata <- dendro_data(Dendrogram)
+```
+
+#Visualize
+```{r}
+ggdendrogram(Dendrogram, rotate = TRUE) + 
+  geom_text(data = ddata$labels, aes(x = x, y = y, label = label), vjust = 0)
+```
+
+```{r}
+Narrow <- 
+  NCI60 %>%
+  gather(value=expression, key=cellLine, -Probe) %>%
+  group_by(Probe, cellLine) %>%
+  summarise(expression = mean(expression)) %>% 
+  ungroup()
+```
+
+
+```{r}
+keep <- 500
+Best <-
+  Narrow %>%
+  group_by(Probe) %>%
+  summarise(spread = sd(expression)) %>%
+  arrange(desc(spread)) %>%
+  mutate(i = row_number()) %>%
+  head(keep)
+Randomized <-
+  Narrow %>%
+  mutate(Probe = shuffle(Probe)) %>%
+  group_by(Probe) %>%
+  summarise(spread = sd(expression)) %>%
+  arrange(desc(spread)) %>%
+  mutate(i = row_number()) %>%
+  head(keep)
+Best %>% 
+  ggplot(aes(x=i, y=spread)) + 
+  geom_line() +
+  geom_line(data=Randomized, color="red", size=1, alpha=.5)
+```
+
+```{r}
+Keepers <-
+  Narrow %>% group_by(Probe) %>%
+  filter(sd(expression) > 4.5)
+Keepers
+```
+
