@@ -1,6 +1,6 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Jhader Aguad
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,44 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##15.1
+
+```{r}
+lubridate::mdy("February 25, 1994") - lubridate::mdy("April 30, 1777")
+lubridate::mdy("February 25, 1994") - lubridate::mdy("06-23-1912")
+lubridate::dmy("25 February 1994") - lubridate::dmy("3 March 1847")
+lubridate::mdy_hm("Feb. 25th, 1994 at 11:00 am") - lubridate::mdy_hm("11 am on Nov. 11th, 1918 at 11:00 am")
+lubridate::mdy("February 25, 1994") - lubridate::mdy("July 20, 1969")
+```
+
+##15.2
+```{r}
+readr::parse_number("42,659.30")
+readr::parse_number("17%")
+readr::parse_number("¬£100")
+readr::parse_number("9.8 m/seconds-square")
+readr::parse_number("9.8 m/sÀÜ2")
+readr::parse_number("42.659,30 (A European style)")
+```
+
+##16.1
+```{r}
+BabyNames %>%
+  filter(sex == "M") %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) %>%
+  filter(grepl("[aeiou]$", name)) %>%
+  arrange(desc(total)) %>%
+  head(10)
+```
+
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) %>%
+  filter(grepl(".*(jo$|joe$)", name)) %>%
+  arrange(desc(total)) %>%
+  head(10)
+```
+##16.2
+Phone number
