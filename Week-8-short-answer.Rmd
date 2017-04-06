@@ -1,6 +1,6 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Jhader Aguad
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,20 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##17.2
+```{r}
+Houses <-
+  read.file("http://tiny.cc/dcf/houses-for-sale.csv")
+```
+
+#Variables
+```{r}
+names(Houses)
+```
+#Difference of bathroom
+```{r}
+179796-151424
+```
+
+#Fireplace
+Makes a difference but it is also affected by living area size
