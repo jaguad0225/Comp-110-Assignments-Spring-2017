@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Jhader Aguad
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,49 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+##8.1 
+1c
+2a,2b,2g
+3e
+4f
+5d,5h
+
+##8.2
+```{r}
+data("CPS85", package = "mosaicData")
+library(ggplot2)
+ggplot(CPS85, aes(x=age, y=wage)) + geom_point(aes(shape=married)) + facet_wrap(~sector)
+```
+
+```{r}
+ggplot(CPS85, aes(x=age,y=wage)) + geom_point() + facet_wrap(sex~married)
+```
+
+##8.3
+```{r}
+ggplot(CPS85, aes(x=age,y=wage)) + geom_point()
+```
+
+```{r}
+ggplot(CPS85, aes(x=age,y=wage)) + geom_point(aes(shape=sex))
+```
+
+```{r}
+ggplot(CPS85, aes(x=age,y=wage)) + geom_point(aes(shape=sex)) + facet_wrap(~married)
+```
+
+```{r}
+ggplot(CPS85, aes(x=age,y=wage)) + geom_point(aes(shape=married)) 
+```
+
+##9.1
+a. summary function 
+b.data verb  
+c. transformation
+d. summary function
+e. data verb  
+f. data verb  
+g. transformation
+h. transformation
+i. quick presentation
