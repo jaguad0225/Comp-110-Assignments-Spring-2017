@@ -1,4 +1,7 @@
 # Week 6 Project
+```{r}
+
+```
 
 ## Jhader Aguad
 

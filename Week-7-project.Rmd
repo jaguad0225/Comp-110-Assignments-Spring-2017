@@ -25,7 +25,6 @@ table_list <-
 ##Create Japan Table
 ```{r}
 japan_table <- table_list[[24]] 
-View(japan_table)
 ```
 ##Remove first Row
 ```{r}
@@ -33,18 +32,26 @@ ncol(japan_table)
 nrow(japan_table)
 new_names <- c("Name", "Reactor", "Type", "Model", "Status", "CapacityNet", "CapacityGross", "ConstructionDate", "CommercialDate", "Closure")
 names(japan_table) <- new_names
-japan_table1 <- japan_table[-1, ]
-nrow(japan_table1)
-View(japan_table1)
-lubridate::
+japan_table <- japan_table[-1, ]
+nrow(japan_table)
 ```
 ##Lubridate
 ```{r}
+japan_table <- japan_table %>%
+  mutate(construction =
+  lubridate::dmy(ConstructionDate))
 
+japan_table <- japan_table %>%
+  mutate(commercial =
+  lubridate::dmy(CommercialDate))
+
+japan_table <- japan_table %>%
+  mutate(closure =
+  lubridate::dmy(Closure))
 ```
 
 4. A quick visualization
 ```{r}
-ggplot(japan_table1,aes(x=ConstructionDate, y=CapacityNet)) + geom_point()
+ggplot(japan_table,aes(x=construction, y=Name)) + geom_segment(aes(x=construction, y=Name,xend=commercial,yend=Name,color=Reactor))
 ```
 
